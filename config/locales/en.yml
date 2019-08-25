@@ -198,7 +198,7 @@ en:
     designs: Audience Management
     authentication: Mobile and web
   footer:
-    powered_by: Powered by MyPerfectice (c) 2018 %{href}.
+    powered_by: Powered by MyPerfectice (c) 2019 <br/> %{href}.
   forgot_password:
     subtitle: Forgot Password
     email: Email
