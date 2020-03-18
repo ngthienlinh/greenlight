@@ -42,7 +42,8 @@ module Authenticator
       redirect_to admins_path
     elsif user.activated?
       # Dont redirect to any of these urls
-      dont_redirect_to = [root_url, signin_url, signup_url, unauthorized_url, internal_error_url, not_found_url]
+      dont_redirect_to = [root_url, signin_url, ldap_signin_url, signup_url, unauthorized_url,
+                          internal_error_url, not_found_url]
       url = if cookies[:return_to] && !dont_redirect_to.include?(cookies[:return_to])
         cookies[:return_to]
       else
@@ -65,6 +66,18 @@ module Authenticator
   # Logs current user out of GreenLight.
   def logout
     session.delete(:user_id) if current_user
+  end
+
+  # Check if the user is using local accounts
+  def auth_changed_to_local?(user)
+    Rails.configuration.loadbalanced_configuration && user.social_uid.present? && allow_greenlight_accounts?
+  end
+
+  # Check if the user exists under the same email with no social uid and that social accounts are allowed
+  def auth_changed_to_social?(email)
+    Rails.configuration.loadbalanced_configuration &&
+      User.exists?(email: email, provider: @user_domain, social_uid: nil) &&
+      !allow_greenlight_accounts?
   end
 
   private
