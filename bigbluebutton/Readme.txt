@@ -1,3 +1,6 @@
+Install BBB
+wget -qO- https://ubuntu.bigbluebutton.org/bbb-install.sh | sudo bash -s -- -v xenial-220 -s <domain> -e <email>
+
 Customize BBB
 - Copy index.html to /var/www/bigbluebutton-default/index.html
 - Copy favicon.ico to /var/www/bigbluebutton-default/images/favicon.ico and /var/www/bigbluebutton/client/favicon.ico
