@@ -64,3 +64,6 @@ bbb-conf --restart
 
 *Create admin account
 docker exec greenlight-v2 bundle exec rake user:create["admin","admin@perfectice.com","welcom3","admin"]
+
+*login to admin, customize logo with this one:
+https://app.myperfectice.com/assets/images/logo1.png
