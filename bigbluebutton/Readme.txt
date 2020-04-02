@@ -59,4 +59,8 @@ echo "  - Prevent viewers from sharing webcams"
 sed -i 's/lockSettingsDisableCam=.*/lockSettingsDisableCam=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 ###########################################################
 
-After all do: bbb-conf --restart
+*After all do: 
+bbb-conf --restart
+
+*Create admin account
+docker exec greenlight-v2 bundle exec rake user:create["admin","admin@perfectice.com","welcom3","admin"]
