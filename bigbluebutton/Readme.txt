@@ -31,7 +31,17 @@ service nginx restart
 
 vi /etc/nginx/sites-available/bigbluebutton
 
---add this to the end
+--add this to top and comment out 'listen 80' of old server block
+###########################################################
+server {
+     listen 80;
+     listen [::]:80;
+     server_name <domain>;
+     return 301 https://<domain>$request_uri;
+}
+###########################################################
+
+--add this to the end of server block
 ###########################################################
 location = / {
   return 307 /b;
@@ -40,13 +50,16 @@ location = / {
 service nginx reload
 
 *Customize BBB
-- Copy index.html to /var/www/bigbluebutton-default/index.html
-- Copy favicon.ico to /var/www/bigbluebutton-default/images/favicon.ico and /var/www/bigbluebutton/client/favicon.ico
-- Copy default.pdf to /var/www/bigbluebutton-default/default.pdf
+- navigate to greenlight/bigbluebutton
+cp index.html /var/www/bigbluebutton-default/
+cp favicon.ico /var/www/bigbluebutton-default/images/ 
+cp favicon.ico /var/www/bigbluebutton/client/
+cp default.pdf /var/www/bigbluebutton-default/
+cp logo.png /var/bigbluebutton/playback/presentation/2.0/
 - Change default welcome message in /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 - Edit /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
 - Edit /var/bigbluebutton/playback/presentation/2.0/playback.js
-- Copy logo.png to /var/bigbluebutton/playback/presentation/2.0/logo.png
+
 
 *Disable webcam sharing by default:
 - Add this script /etc/bigbluebutton/bbb-conf/apply-config.sh
@@ -58,6 +71,7 @@ source /etc/bigbluebutton/bbb-conf/apply-lib.sh
 echo "  - Prevent viewers from sharing webcams"
 sed -i 's/lockSettingsDisableCam=.*/lockSettingsDisableCam=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 ###########################################################
+chmod +x /etc/bigbluebutton/bbb-conf/apply-config.sh
 
 *After all do: 
 bbb-conf --restart
@@ -67,3 +81,6 @@ docker exec greenlight-v2 bundle exec rake user:create["admin","admin@perfectice
 
 *login to admin, customize logo with this one:
 https://app.myperfectice.com/assets/images/logo1.png
+
+*Edit /opt/freeswitch/conf/autoload_configs/conference.conf.xml
+*Reduce energy-level if there is many sound cracking problem
