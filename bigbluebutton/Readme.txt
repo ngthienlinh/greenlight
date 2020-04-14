@@ -57,8 +57,11 @@ cp favicon.ico /var/www/bigbluebutton/client/
 cp default.pdf /var/www/bigbluebutton-default/
 cp logo.png /var/bigbluebutton/playback/presentation/2.0/
 - Change default welcome message in /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
-- Edit /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
-- Edit /var/bigbluebutton/playback/presentation/2.0/playback.js
+vi /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+- Edit settings.yml and change bigbluebutton to whiteboard
+vi /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
+- Edit playback.js and change bigbluebutton to whiteboard
+vi /var/bigbluebutton/playback/presentation/2.0/playback.js
 
 
 *Disable webcam sharing by default:
