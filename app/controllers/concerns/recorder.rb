@@ -128,7 +128,7 @@ module Recorder
   # Gets the email of the room owner to which the recording belongs to
   def recording_owner(room_id)
     roomInfo = Room.find_by(bbb_id: room_id)
-    if roomInfo.nil?
+    if roomInfo.owner.nil?
       ''
     else
       roomInfo.owner.email.presence || Room.find_by(bbb_id: room_id).owner.username
