@@ -23,7 +23,12 @@ module AdminsHelper
 
   # Gets the email of the room owner to which the recording belongs to
   def recording_owner_email(room_id)
-    Room.find_by(bbb_id: room_id).owner.email.presence || Room.find_by(bbb_id: room_id).owner.username
+    roomInfo = Room.find_by(bbb_id: room_id)
+    if roomInfo.nil?
+      ''
+    else
+      roomInfo.owner.email.presence || Room.find_by(bbb_id: room_id).owner.username
+    end
   end
 
   # Get the room status to display in the Server Rooms table
