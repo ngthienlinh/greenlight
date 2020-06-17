@@ -4,7 +4,7 @@ green=`tput setaf 2`
 reset=`tput sgr0`
 
 echo "${green}Installing whiteboard server $1 ${reset}"
-wget -qO- https://ubuntu.bigbluebutton.org/bbb-install.sh | bash -s -- -v xenial-220 -s $1 -e hello@myperfectice.com
+wget -qO- https://ubuntu.bigbluebutton.org/bbb-install.sh | bash -s -- -v xenial-220 -s $1 -e hello@myperfectice.com -c stun.eupheus.in:Summer@2020
 cd /home/ubuntu/greenlight/bigbluebutton/
 cp index.html /var/www/bigbluebutton-default/
 cp favicon.ico /var/www/bigbluebutton-default/
