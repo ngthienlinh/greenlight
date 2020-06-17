@@ -5,4 +5,4 @@ source /etc/bigbluebutton/bbb-conf/apply-lib.sh
 echo "  - Prevent viewers from sharing webcams"
 sed -i 's/lockSettingsDisableCam=.*/lockSettingsDisableCam=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
 echo "  - Prevent viewers from editing shared notes"
-sed -i 's/lockSettingsDisableNote=.*/lockSettingsDisableNote=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties/
+sed -i 's/lockSettingsDisableNote=.*/lockSettingsDisableNote=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
