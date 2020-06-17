@@ -42,3 +42,6 @@ echo "    return 307 https://whiteboard.eupheus.in/b;"
 echo "  }"
 echo "Then restart nginx"
 echo "Then restart BBB"
+
+echo "BBB secret"
+bbb-conf --secret
