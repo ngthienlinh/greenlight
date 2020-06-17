@@ -1,0 +1,18 @@
+#!/bin/bash
+red=`tput setaf 1`
+green=`tput setaf 2`
+reset=`tput sgr0`
+
+echo "${green}Installing whiteboard server $1 ${reset}"
+wget -qO- https://ubuntu.bigbluebutton.org/bbb-install.sh | bash -s -- -v xenial-220 -s $1 -e hello@myperfectice.com
+cd /home/ubuntu/greenlight/bigbluebutton/
+cp index.html /var/www/bigbluebutton-default/
+cp favicon.ico /var/www/bigbluebutton-default/
+cp favicon.ico /var/www/bigbluebutton-default/images/
+cp favicon.ico /var/www/bigbluebutton/client/
+cp default.pdf /var/www/bigbluebutton-default/
+cp logo.png /var/bigbluebutton/playback/presentation/2.0/
+
+echo "install nfs"
+apt-get update
+apt-get install nfs-common
