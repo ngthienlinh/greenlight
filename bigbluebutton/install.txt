@@ -45,3 +45,5 @@ echo "Then restart BBB"
 
 echo "BBB secret"
 bbb-conf --secret
+
+echo "May check /etc/kurento/modules/kurento/WebRtcEndpoint.conf.ini as well. Put external ip to externalAddress."
