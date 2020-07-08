@@ -1,0 +1,49 @@
+#!/bin/bash
+red=`tput setaf 1`
+green=`tput setaf 2`
+reset=`tput sgr0`
+
+echo "${green}Installing whiteboard server $1 ${reset}"
+wget -qO- https://ubuntu.bigbluebutton.org/bbb-install.sh | bash -s -- -v xenial-220 -s $1 -e hello@myperfectice.com -c turn.myperfectice.com:Summer@2020
+cd /home/ubuntu/greenlight/bigbluebutton/
+cp index.html /var/www/bigbluebutton-default/
+cp favicon.ico /var/www/bigbluebutton-default/
+cp favicon.ico /var/www/bigbluebutton-default/images/
+cp favicon.ico /var/www/bigbluebutton/client/
+cp default.pdf /var/www/bigbluebutton-default/
+cp logo.png /var/bigbluebutton/playback/presentation/2.0/
+
+sed -i 's/defaultWelcomeMessage=.*/defaultWelcomeMessage=Welcome to <b>%%CONFNAME%%<\/b>!<br><br>To join the audio bridge click the phone button./g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+sed -i 's/defaultWelcomeMessageFooter=.*/defaultWelcomeMessageFooter=Use a headset to avoid causing background noise for others./g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+
+cp disable_playback.txt /etc/bigbluebutton/bbb-conf/apply-config.sh
+chmod +x /etc/bigbluebutton/bbb-conf/apply-config.sh
+
+echo "install nfs"
+apt-get update
+apt-get -y install nfs-common
+
+groupadd -g 2000 scalelite-spool
+usermod -a -G scalelite-spool bigbluebutton
+
+mkdir -p /mnt/scalelite-recordings
+mount 13.232.245.86:/mnt/scalelite-recordings /mnt/scalelite-recordings
+echo '13.232.245.86:/mnt/scalelite-recordings /mnt/scalelite-recordings nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0' > /etc/fstab
+
+cp scalelite_post_publish.rb /usr/local/bigbluebutton/core/scripts/post_publish/scalelite_post_publish.rb
+cp scalelite.yml /usr/local/bigbluebutton/core/scripts/post_publish/scalelite.yml
+
+echo "done"
+echo "Still need to edit /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml"
+echo "And /usr/local/bigbluebutton/bbb-webrtc-sfu/config/default.yml"
+echo "Edit nginx config /etc/nginx/sites-available/bigbluebutton"
+echo "location = / {"
+echo "    return 307 https://whiteboard.myperfectice.com/b;"
+echo "  }"
+echo "Then restart nginx"
+echo "Then restart BBB"
+
+echo "BBB secret"
+bbb-conf --secret
+
+echo "May check /etc/kurento/modules/kurento/WebRtcEndpoint.conf.ini as well. Put external ip to externalAddress."
