@@ -38,7 +38,7 @@ echo "Still need to edit /usr/share/meteor/bundle/programs/server/assets/app/con
 echo "And /usr/local/bigbluebutton/bbb-webrtc-sfu/config/default.yml"
 echo "Edit nginx config /etc/nginx/sites-available/bigbluebutton"
 echo "location = / {"
-echo "    return 307 https://whiteboard.eupheus.in/b;"
+echo "    return 307 https://whiteboard.myperfectice.com/b;"
 echo "  }"
 echo "Then restart nginx"
 echo "Then restart BBB"
