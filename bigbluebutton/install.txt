@@ -4,7 +4,7 @@ green=`tput setaf 2`
 reset=`tput sgr0`
 
 echo "${green}Installing whiteboard server $1 ${reset}"
-wget -qO- https://ubuntu.bigbluebutton.org/bbb-install.sh | bash -s -- -v xenial-220 -s $1 -e hello@myperfectice.com -c turn.myperfectice.com:Summer@2020
+wget -qO- https://ubuntu.bigbluebutton.org/bbb-install.sh | bash -s -- -v xenial-220 -s $1 -e hello@myperfectice.com -c stun.eupheus.in:Summer@2020
 cd /home/ubuntu/greenlight/bigbluebutton/
 cp index.html /var/www/bigbluebutton-default/
 cp favicon.ico /var/www/bigbluebutton-default/
@@ -38,12 +38,10 @@ echo "Still need to edit /usr/share/meteor/bundle/programs/server/assets/app/con
 echo "And /usr/local/bigbluebutton/bbb-webrtc-sfu/config/default.yml"
 echo "Edit nginx config /etc/nginx/sites-available/bigbluebutton"
 echo "location = / {"
-echo "    return 307 https://whiteboard.myperfectice.com/b;"
+echo "    return 307 https://whiteboard.eupheus.in/b;"
 echo "  }"
 echo "Then restart nginx"
 echo "Then restart BBB"
 
 echo "BBB secret"
 bbb-conf --secret
-
-echo "May check /etc/kurento/modules/kurento/WebRtcEndpoint.conf.ini as well. Put external ip to externalAddress."
