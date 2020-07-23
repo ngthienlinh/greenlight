@@ -11,3 +11,7 @@ else
     docker-compose -f /home/ubuntu/greenlight/docker-compose.yml down
     docker-compose -f /home/ubuntu/greenlight/docker-compose.yml up -d
 fi
+# to install the file, copy it to another folder and make it executable 'sudo chmod +x /path/to/greenlight_watchdog.sh'
+# set a cron job to execute it every 5 min: 'sudo crontab -e' 
+# add this line:
+# */5 * * * * /home/ubuntu/greenlight_watchdog.sh >> /var/log/greenlight.log 2>&1
