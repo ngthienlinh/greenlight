@@ -27,11 +27,11 @@ groupadd -g 2000 scalelite-spool
 usermod -a -G scalelite-spool bigbluebutton
 
 mkdir -p /mnt/scalelite-recordings
-mount 13.232.245.86:/mnt/scalelite-recordings /mnt/scalelite-recordings
-echo '13.232.245.86:/mnt/scalelite-recordings /mnt/scalelite-recordings nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0' > /etc/fstab
+mount 51.75.147.194:/mnt/scalelite-recordings /mnt/scalelite-recordings
+echo '51.75.147.194:/mnt/scalelite-recordings /mnt/scalelite-recordings nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0' > /etc/fstab
 
 cp scalelite_post_publish.rb /usr/local/bigbluebutton/core/scripts/post_publish/scalelite_post_publish.rb
-cp scalelite.yml /usr/local/bigbluebutton/core/scripts/post_publish/scalelite.yml
+cp scalelite.yml /usr/local/bigbluebutton/core/scripts/scalelite.yml
 
 echo "done"
 echo "Still need to edit /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml"
