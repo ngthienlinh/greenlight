@@ -1,6 +1,6 @@
 *Install BBB
 
-wget -qO- https://ubuntu.bigbluebutton.org/bbb-install.sh | sudo bash -s -- -v xenial-220 -s <domain> -e <email>
+wget -qO- https://ubuntu.bigbluebutton.org/bbb-install.sh | sudo bash -s -- -v xenial-220 -s <domain> -e <email> -c turn.myperfectice.com:Summer@2020
 
 *Install docker
 
