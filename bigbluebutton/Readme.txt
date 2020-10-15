@@ -1,6 +1,6 @@
 *Install BBB
 
-wget -qO- https://ubuntu.bigbluebutton.org/bbb-install.sh | sudo bash -s -- -v xenial-220 -s <domain> -e <email>
+wget -qO- https://ubuntu.bigbluebutton.org/bbb-install.sh | sudo bash -s -- -v xenial-220 -s <domain> -e <email> -c turn.myperfectice.com:Summer@2020
 
 *Install docker
 
@@ -73,6 +73,11 @@ source /etc/bigbluebutton/bbb-conf/apply-lib.sh
 
 echo "  - Prevent viewers from sharing webcams"
 sed -i 's/lockSettingsDisableCam=.*/lockSettingsDisableCam=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+echo "  - Prevent viewers from editing shared notes"
+sed -i 's/lockSettingsDisableNote=.*/lockSettingsDisableNote=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+echo "  - Prevent viewers from sending private chat"
+sed -i 's/lockSettingsDisablePrivateChat=.*/lockSettingsDisablePrivateChat=true/g' /usr/share/bbb-web/WEB-INF/classes/bigbluebutton.properties
+
 ###########################################################
 chmod +x /etc/bigbluebutton/bbb-conf/apply-config.sh
 
@@ -87,3 +92,8 @@ https://app.myperfectice.com/assets/images/logo1.png
 
 *Edit /opt/freeswitch/conf/autoload_configs/conference.conf.xml
 *Reduce energy-level if there is many sound cracking problem
+
+*Change greenlight user password:
+1- docker exec -it greenlight-v2 bash
+2- bundle exec rails c
+3- User.find_by(email: "<email of user to reset>").update_attribute(:password,"<new password>")

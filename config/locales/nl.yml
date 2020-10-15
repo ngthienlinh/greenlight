@@ -36,7 +36,7 @@ nl:
         enabled: Ingeschakeld
         info: Sta alleen geverifieerde gebruikers toe om deel te nemen aan een ruimte
         title: Verificatie vereist voor kamers
-        user-info: Je moet bij hierboven inloggen om lid te kunnen worden van deze kamer.
+        user-info: Je moet hierboven inloggen om lid te kunnen worden van deze kamer.
       branding:
         change: Wijzig afbeelding
         info: Wijzig de merkafbeelding die in de linkerbovenhoek wordt weergegeven
@@ -202,12 +202,14 @@ nl:
       table:
         authenticator: Authenticator
         created: Gemaakt
+        time: Tijd Verzonden
         name: Naam
         not_found: Geen gebruikers komen overeen met uw zoekopdracht
         no_users: Geen gebruikers gevonden
         role: Rol
         uid: Gebruiker ID
         username: Gebruikersnaam
+        valid: Geldig
       title: Gebruikers beheren
   add_to_google_calendar: "Toevoegen aan Google Agenda"
   bigbluebutton: BigBlueButton
@@ -369,8 +371,6 @@ nl:
         verify_text: 'Volg deze link om uw account te verifiëren: %{url}'
         verify_link: Verifieer Account
         thanks: Bedankt voor je deelname en een fijne dag verder!
-  maintenance:
-    window_alert: "Onderhoudsvenster gepland voor %{date}"
   max_concurrent: Het maximum aantal toegestane gelijktijdige sessies is bereikt!
   merged: Samengevoegd
   modal:
@@ -395,6 +395,10 @@ nl:
       keep: Eigenlijk zal ik het houden.
       delete_warning: Dit zal het gebruikersaccount deactiveren. Alle gedeactiveerde gebruikers zijn te vinden op het verwijderde tabblad.
       warning: Deze beslissing is definitief. U kunt bijbehorende gegevens <b>niet</b> meer herstellen.
+    delete_rec:
+      delete: "Ik ben zeker, verwijder deze opname."
+      header: "Weet u zeker dat u deze opname wilt verwijderen?"
+      warning: Je zal deze opname <b>niet<b> meer kunnen terugkrijgen
     delete_room:
       confirm: "Weet u zeker dat u %{room} wilt verwijderen?"
       delete: "Ik ben zeker, verwijder deze kamer maar."
@@ -412,7 +416,7 @@ nl:
       forgot_password: "Wachtwoord vergeten?"
     preupload:
       change: Presentatie vervangen
-      choose: "Kies een bestand (%{type})"
+      choose: Kies een bestand...
       current: "Huidige presentatie:"
       footer: "Afhankelijk van de grootte van de presentatie, kan het uploaden extra tijd vergen voordat deze kan worden gebruikt."
       invalid: Ongeldige grootte/bestandstype. Zie de beperkingen onderaan.
@@ -528,6 +532,7 @@ nl:
   room:
     access_code_required: Voer een geldige toegangscode in om toegang te krijgen tot de kamer
     add_presentation: Presentatie toevoegen
+    copy_access: Kopieer Toegangscode
     create_room: Maak een kamer
     create_room_error: Er is een fout opgetreden bij het maken van de kamer
     create_room_success: Kamer met succes gemaakt
@@ -539,7 +544,7 @@ nl:
     invalid_provider: U heeft een ongeldige URL ingevoerd. Controleer de URL en probeer het opnieuw.
     invitation_description: "Je bent uitgenodigd om deel te nemen aan %{name} via BigBlueButton. Klik op bovenstaande link en voert u uw naam in om te beginnen."  
     invited: Je bent uitgenodigd om lid te worden
-    recording_present: De sessie wordt opgenomen. Dit kan spraak en video van uw kant zijn.
+    recording_present: Ik erken dat deze sessie zal worden opgenomen. Deze opname kan mijn stem en video bevatten indien dit is ingeschakeld.
     invite_participants: Deelnemers uitnodigen
     join: Toetreden
     last_session: "Laatste sessie op %{session}"
