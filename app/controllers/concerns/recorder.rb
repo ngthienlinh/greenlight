@@ -88,7 +88,7 @@ module Recorder
                  r[:name].downcase.include?(search)) ||
                r[:participants].include?(search) ||
                !r[:playbacks].select { |p| p[:type].downcase.include?(search) }.empty? ||
-               (search_name && Room.find_by(bbb_id: r[:meetingID]).owner.email.downcase.include?(search))
+               (search_name && recording_owner(r[:meetingID]).downcase.include?(search))
     end
   end
 
@@ -120,6 +120,18 @@ module Recorder
       recs
     else
       recs.reverse
+    end
+  end
+
+  private
+
+  # Gets the email of the room owner to which the recording belongs to
+  def recording_owner(room_id)
+    roomInfo = Room.find_by(bbb_id: room_id)
+    if roomInfo.owner.nil?
+      ''
+    else
+      roomInfo.owner.email.presence || Room.find_by(bbb_id: room_id).owner.username
     end
   end
 end

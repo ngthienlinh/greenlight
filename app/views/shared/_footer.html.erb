@@ -14,7 +14,21 @@
 %>
 
 <footer class="footer pt-3">
-  <p class="text-center mb-1"><%= t("footer.powered_by", href: link_to("www.myperfectice.com", "https://www.myperfectice.com", target: "_blank", class: "text-blue")).html_safe %></p>
+  <p class="text-center mb-1">
+    <%= t("footer.powered_by", href: link_to("www.myperfectice.com", "https://www.myperfectice.com", target: "_blank", rel: "noopener", class: "text-blue")).html_safe %> <%= Greenlight::Application::VERSION %>
+    <% if legal_url.present? %>
+      <span>
+        |
+        <%= link_to(t("footer.legal"), legal_url) %>
+      </span> 
+    <% end %>
+    <% if privpolicy_url.present? %>
+      <span>
+        |
+        <%= link_to(t("footer.privpolicy"), privpolicy_url)  %>
+      </span>
+    <% end %>
+  </p>
 </footer>
 
 <%= render "shared/components/cookie_warning" %>
